@@ -1,5 +1,6 @@
 package com.example.used_market.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.used_market.R
 import com.example.used_market.databinding.FragmentHomeBinding
 import com.example.used_market.mypage.DBKey.Companion.DB_ARTICLES
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -61,6 +63,18 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
         fragmentHomeBinding.articleRecyclerView.layoutManager = LinearLayoutManager(context)
         fragmentHomeBinding.articleRecyclerView.adapter = articleAdapter
+
+        fragmentHomeBinding.addFloatingButton.setOnClickListener {
+            context?.let {
+                // todo 로그인 기능 구현 후에 주석 지우기
+//                 if(auth.currentUser != null){
+                     val intent = Intent(it, AddArticleActivity::class.java)
+                     startActivity(intent)
+//                    } else {
+//                     Snackbar.make(view, "로그인 후 사용해주세요", Snackbar.LENGTH_LONG).show()
+//                    }
+            }
+        }
 
         articleDB.addChildEventListener(listener)
     }

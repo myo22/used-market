@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "140281411343",
+    "firebase_url": "https://used-market-a6244-default-rtdb.firebaseio.com",
+    "project_id": "used-market-a6244",
+    "storage_bucket": "used-market-a6244.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140281411343:android:070f5d8b38bbeff022b07a",
+        "android_client_info": {
+          "package_name": "com.example.used_market"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIFnX9w3FgF899UIi_HXtlWCWB6NFCQ5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

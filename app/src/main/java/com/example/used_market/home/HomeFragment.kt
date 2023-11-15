@@ -15,7 +15,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.example.used_market.R
+import com.example.used_market.chatlist.ChatListItem
 import com.example.used_market.databinding.FragmentHomeBinding
+import com.example.used_market.mypage.DBKey.Companion.CHILD_CHAT
 import com.example.used_market.mypage.DBKey.Companion.DB_ARTICLES
 
 class HomeFragment: Fragment(R.layout.fragment_home) {
@@ -62,20 +64,57 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
         articleList.clear()
         articleDB = Firebase.database.reference.child(DB_ARTICLES)
-        articleAdapter = ArticleAdapter()
+        articleAdapter = ArticleAdapter(onItemClicked = { articleModel ->
+            if (auth.currentUser != null) {
+                // 로그인을 한 상태
+                if (auth.currentUser.uid != articleModel.sellerId) {
+
+                    val chatRoom = ChatListItem(
+                        buyerId = auth.currentUser.uid,
+                        sellerId = articleModel.sellerId,
+                        itemTitle = articleModel.title,
+                        key = System.currentTimeMillis()
+                    )
+
+                    userDB.child(auth.currentUser.uid)
+                        .child(CHILD_CHAT)
+                        .push()
+                        .setValue(chatRoom)
+
+                    userDB.child(articleModel.sellerId)
+                        .child(CHILD_CHAT)
+                        .push()
+                        .setValue(chatRoom)
+
+
+                    Snackbar.make(view, "채팅방이 생성되었습니다. 채팅탭에서 확인해주세요.", Snackbar.LENGTH_LONG).show()
+
+
+                } else {
+                    // 내가 올린 아이템
+                    Snackbar.make(view, "내가 올린 아이템입니다", Snackbar.LENGTH_LONG).show()
+                }
+            } else {
+                // 로그인을 안한 상태
+                Snackbar.make(view, "로그인 후 사용해주세요", Snackbar.LENGTH_LONG).show()
+            }
+
+
+
+
+        })
 
         fragmentHomeBinding.articleRecyclerView.layoutManager = LinearLayoutManager(context)
         fragmentHomeBinding.articleRecyclerView.adapter = articleAdapter
 
         fragmentHomeBinding.addFloatingButton.setOnClickListener {
             context?.let {
-                // todo 로그인 기능 구현 후에 주석 지우기
-//                 if(auth.currentUser != null){
+                 if(auth.currentUser != null){
                      val intent = Intent(it, AddArticleActivity::class.java)
                      startActivity(intent)
-//                    } else {
-//                     Snackbar.make(view, "로그인 후 사용해주세요", Snackbar.LENGTH_LONG).show()
-//                    }
+                    } else {
+                     Snackbar.make(view, "로그인 후 사용해주세요", Snackbar.LENGTH_LONG).show()
+                    }
             }
         }
 

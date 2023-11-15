@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.used_market.home.AddArticleActivity"/>
+        <activity android:name=".chatdetail.ChatRoomActivity"/>
     </application>
 
 </manifest>

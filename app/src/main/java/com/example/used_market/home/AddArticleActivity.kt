@@ -61,6 +61,7 @@ class AddArticleActivity : AppCompatActivity() {
             val price = findViewById<EditText>(R.id.priceEditText).text.toString()
             val sellerId = auth.currentUser?.uid.orEmpty()
 
+            showProgress()
 
             // 중간에 이미지가 있으면 업로드 과정을 추가합니다.
             if (selectedUri != null) {
@@ -71,6 +72,7 @@ class AddArticleActivity : AppCompatActivity() {
                     },
                     errorHandler = {
                         Toast.makeText(this, "사진 업로드에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                        hideProgress()
                     }
                 )
             } else {
@@ -102,6 +104,7 @@ class AddArticleActivity : AppCompatActivity() {
         val model = ArticleModel(sellerId, title, System.currentTimeMillis(), "$price 원", imageUrl)
         articleDB.push().setValue(model)
 
+        hideProgress()
         finish()
     }
 
@@ -127,6 +130,14 @@ class AddArticleActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
         startActivityForResult(intent, 2020)
+    }
+
+    private fun showProgress() {
+        findViewById<ProgressBar>(R.id.progressBar).isVisible = true
+    }
+
+    private fun hideProgress() {
+        findViewById<ProgressBar>(R.id.progressBar).isVisible = false
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

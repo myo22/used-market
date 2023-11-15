@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.used_market.chatdetail.ChatRoomActivity
 import com.example.used_market.databinding.FragmentChatlistBinding
 import com.example.used_market.mypage.DBKey.Companion.CHILD_CHAT
 import com.example.used_market.mypage.DBKey.Companion.DB_USERS

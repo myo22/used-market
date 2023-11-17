@@ -48,7 +48,7 @@ class AddArticleActivity : AppCompatActivity() {
                     startContentProvider()
                 }
                 shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE) -> {
-                    showPermissionContextPopup()
+                    showPermissionDeniedDialog()
                 }
                 else -> {
                     requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1010)
@@ -111,20 +111,23 @@ class AddArticleActivity : AppCompatActivity() {
 
 
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         when (requestCode) {
-            1010 ->
+            1010 -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     startContentProvider()
                 } else {
-                    Toast.makeText(this, "권한을 거부하셨습니다.", Toast.LENGTH_SHORT).show()
+                    showPermissionDeniedDialog()
                 }
+            }
         }
     }
-
-
 
     private fun startContentProvider() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
@@ -164,16 +167,15 @@ class AddArticleActivity : AppCompatActivity() {
         }
     }
 
-    private fun showPermissionContextPopup() {
+    private fun showPermissionDeniedDialog() {
         AlertDialog.Builder(this)
-            .setTitle("권한이 필요합니다.")
-            .setMessage("사진을 가져오기 위해 필요합니다.")
-            .setPositiveButton("동의") { _, _ ->
+            .setTitle("권한이 거부되었습니다.")
+            .setMessage("사진을 가져오기 위해서는 권한이 필요합니다.")
+            .setPositiveButton("확인") { _, _ ->
                 requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1010)
             }
             .create()
             .show()
-
     }
 
 }

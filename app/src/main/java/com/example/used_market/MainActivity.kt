@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId){
                 R.id.home -> replaceFragment(homeFragment)
-                    R.id.chatList -> replaceFragment(chatListFragment)
+                R.id.chatList -> replaceFragment(chatListFragment)
                 R.id.myPage -> replaceFragment(myPageFragment)
             }
             true

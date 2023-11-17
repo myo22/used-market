@@ -17,8 +17,8 @@ import com.google.firebase.ktx.Firebase
 import com.example.used_market.R
 import com.example.used_market.chatlist.ChatListItem
 import com.example.used_market.databinding.FragmentHomeBinding
-import com.example.used_market.mypage.DBKey.Companion.CHILD_CHAT
-import com.example.used_market.mypage.DBKey.Companion.DB_ARTICLES
+import com.example.used_market.DBKey.Companion.CHILD_CHAT
+import com.example.used_market.DBKey.Companion.DB_ARTICLES
 
 class HomeFragment: Fragment(R.layout.fragment_home) {
 
@@ -66,17 +66,20 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         articleDB = Firebase.database.reference.child(DB_ARTICLES)
         articleAdapter = ArticleAdapter(onItemClicked = { articleModel ->
             if (auth.currentUser != null) {
+
+                val currentUserId = auth.currentUser!!.uid
+
                 // 로그인을 한 상태
-                if (auth.currentUser.uid != articleModel.sellerId) {
+                if (currentUserId != articleModel.sellerId) {
 
                     val chatRoom = ChatListItem(
-                        buyerId = auth.currentUser.uid,
+                        buyerId = currentUserId,
                         sellerId = articleModel.sellerId,
                         itemTitle = articleModel.title,
                         key = System.currentTimeMillis()
                     )
 
-                    userDB.child(auth.currentUser.uid)
+                    userDB.child(currentUserId)
                         .child(CHILD_CHAT)
                         .push()
                         .setValue(chatRoom)

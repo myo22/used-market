@@ -18,7 +18,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.example.used_market.R
-import com.example.used_market.mypage.DBKey.Companion.DB_ARTICLES
+import com.example.used_market.DBKey.Companion.DB_ARTICLES
 
 class AddArticleActivity : AppCompatActivity() {
 

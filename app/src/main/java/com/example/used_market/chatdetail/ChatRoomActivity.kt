@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.used_market.R
-import com.example.used_market.mypage.DBKey.Companion.DB_CHATS
+import com.example.used_market.DBKey.Companion.DB_CHATS
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ChildEventListener
@@ -60,16 +60,18 @@ class ChatRoomActivity : AppCompatActivity(){
         findViewById<RecyclerView>(R.id.chatRecyclerView).layoutManager = LinearLayoutManager(this)
 
         findViewById<Button>(R.id.sendButton).setOnClickListener {
-            val chatItem = ChatItem(
-                senderId = auth.currentUser.uid,
-                message = findViewById<EditText>(R.id.messageEditText).text.toString()
-            )
+            val currentUserId = auth.currentUser?.uid
+            if (currentUserId != null) {
+                val chatItem = ChatItem(
+                    senderId = currentUserId,
+                    message = findViewById<EditText>(R.id.messageEditText).text.toString()
+                )
 
-            chatDB?.push()?.setValue(chatItem)
+                chatDB?.push()?.setValue(chatItem)
+
+            }
 
         }
-
-
     }
 
 }

@@ -8,8 +8,8 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.used_market.chatdetail.ChatRoomActivity
 import com.example.used_market.databinding.FragmentChatlistBinding
-import com.example.used_market.mypage.DBKey.Companion.CHILD_CHAT
-import com.example.used_market.mypage.DBKey.Companion.DB_USERS
+import com.example.used_market.DBKey.Companion.CHILD_CHAT
+import com.example.used_market.DBKey.Companion.DB_USERS
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -54,7 +54,9 @@ class ChatListFragment: Fragment(R.layout.fragment_chatlist) {
             return
         }
 
-        val chatDB = Firebase.database.reference.child(DB_USERS).child(auth.currentUser.uid).child(CHILD_CHAT)
+        val currentUserId = auth.currentUser!!.uid
+
+        val chatDB = Firebase.database.reference.child(DB_USERS).child(currentUserId).child(CHILD_CHAT)
 
         chatDB.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

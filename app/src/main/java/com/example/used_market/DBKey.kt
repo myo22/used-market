@@ -1,4 +1,4 @@
-package com.example.used_market.mypage
+package com.example.used_market
 public class DBKey {
     companion object {
         const val DB_ARTICLES = "Articles"

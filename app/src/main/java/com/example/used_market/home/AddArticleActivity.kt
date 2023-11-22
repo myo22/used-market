@@ -43,17 +43,20 @@ class AddArticleActivity : AppCompatActivity() {
             when {
                 ContextCompat.checkSelfPermission(
                     this,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE
+                    android.Manifest.permission.READ_MEDIA_IMAGES
                 ) == PackageManager.PERMISSION_GRANTED -> {
                     startContentProvider()
                 }
-                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE) -> {
-                    showPermissionDeniedDialog()
+                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_MEDIA_IMAGES) -> {
+                    showPermissionContextPopup()
                 }
                 else -> {
-                    requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1010)
+                    requestPermissions(arrayOf(android.Manifest.permission.READ_MEDIA_IMAGES), 1010)
                 }
+
+
             }
+
         }
 
         findViewById<Button>(R.id.submitButton).setOnClickListener {
@@ -63,7 +66,7 @@ class AddArticleActivity : AppCompatActivity() {
 
             showProgress()
 
-            // 중간에 이미지가 있으면 업로드 과정을 추가합니다.
+            // 중간에 이미지가 있으면 업로드 과정을 추가
             if (selectedUri != null) {
                 val photoUri = selectedUri ?: return@setOnClickListener
                 uploadPhoto(photoUri,
@@ -108,32 +111,24 @@ class AddArticleActivity : AppCompatActivity() {
         finish()
     }
 
-
-
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         when (requestCode) {
-            1010 -> {
+            1010 ->
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     startContentProvider()
                 } else {
-                    showPermissionDeniedDialog()
+                    Toast.makeText(this, "권한을 거부하셨습니다.", Toast.LENGTH_SHORT).show()
                 }
-            }
         }
     }
 
     private fun startContentProvider() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
-//        startActivityForResult(intent, 2020)
         startActivityForResult(intent, 2020)
+
     }
 
     private fun showProgress() {
@@ -146,8 +141,8 @@ class AddArticleActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode != Activity.RESULT_OK) {
+        if(resultCode != Activity.RESULT_OK) {
+            Toast.makeText(this,"잘못된 접근입니다",Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -168,15 +163,16 @@ class AddArticleActivity : AppCompatActivity() {
         }
     }
 
-    private fun showPermissionDeniedDialog() {
+    private fun showPermissionContextPopup() {
         AlertDialog.Builder(this)
-            .setTitle("권한이 거부되었습니다.")
-            .setMessage("사진을 가져오기 위해서는 권한이 필요합니다.")
-            .setPositiveButton("확인") { _, _ ->
-                requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1010)
+            .setTitle("권한이 필요합니다.")
+            .setMessage("사진을 가져오기 위해 필요합니다.")
+            .setPositiveButton("동의") { _, _ ->
+                requestPermissions(arrayOf(android.Manifest.permission.READ_MEDIA_IMAGES), 1010)
             }
             .create()
             .show()
+
     }
 
 }

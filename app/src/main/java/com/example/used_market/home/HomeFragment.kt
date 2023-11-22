@@ -97,7 +97,7 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
                 } else {
                     // 내가 올린 아이템
-                    Snackbar.make(view, "내가 올린 아이템입니다", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(view, "내가 올린 물건입니다.", Snackbar.LENGTH_LONG).show()
                 }
             } else {
                 // 로그인을 안한 상태

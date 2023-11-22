@@ -25,8 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.example.used_market.home.AddArticleActivity"/>
+        <activity android:name=".home.AddArticleActivity"/>
         <activity android:name=".chatdetail.ChatRoomActivity"/>
     </application>
 

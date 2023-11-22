@@ -132,6 +132,7 @@ class AddArticleActivity : AppCompatActivity() {
     private fun startContentProvider() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
+//        startActivityForResult(intent, 2020)
         startActivityForResult(intent, 2020)
     }
 

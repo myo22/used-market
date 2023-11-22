@@ -19,6 +19,7 @@ import com.example.used_market.chatlist.ChatListItem
 import com.example.used_market.databinding.FragmentHomeBinding
 import com.example.used_market.DBKey.Companion.CHILD_CHAT
 import com.example.used_market.DBKey.Companion.DB_ARTICLES
+import com.example.used_market.DBKey.Companion.DB_USERS
 
 class HomeFragment: Fragment(R.layout.fragment_home) {
 
@@ -63,6 +64,7 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         binding = fragmentHomeBinding
 
         articleList.clear()
+        userDB = Firebase.database.reference.child(DB_USERS)
         articleDB = Firebase.database.reference.child(DB_ARTICLES)
         articleAdapter = ArticleAdapter(onItemClicked = { articleModel ->
             if (auth.currentUser != null) {

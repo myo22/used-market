@@ -1,5 +1,5 @@
 package com.example.used_market
-public class DBKey {
+class DBKey {
     companion object {
         const val DB_ARTICLES = "Articles"
         const val DB_USERS = "Users"

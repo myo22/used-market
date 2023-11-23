@@ -125,7 +125,6 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
         articleDB.addChildEventListener(listener)
     }
-
     override fun onResume() {
         super.onResume()
 

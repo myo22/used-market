@@ -60,7 +60,7 @@ class ChatRoomActivity : AppCompatActivity(){
         findViewById<RecyclerView>(R.id.chatRecyclerView).layoutManager = LinearLayoutManager(this)
 
         findViewById<Button>(R.id.sendButton).setOnClickListener {
-            val currentUserId = auth.currentUser?.uid
+            val currentUserId = auth.currentUser?.email
             if (currentUserId != null) {
                 val chatItem = ChatItem(
                     senderId = currentUserId,

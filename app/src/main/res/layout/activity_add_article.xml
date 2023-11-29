@@ -12,15 +12,17 @@
         app:layout_constraintStart_toStartOf="parent"
         android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/green">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="물건 등록하기"
+            android:fontFamily="@font/nanumhimnaeraneunm"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="27sp"
             android:textStyle="bold">
 
         </TextView>
@@ -41,6 +43,8 @@
         android:hint="글 제목"
         android:layout_marginTop="16dp"
         android:id="@+id/titleEditText"
+        android:fontFamily="@font/nanumhimnaeraneunm"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbarUnderLineView"
@@ -53,6 +57,8 @@
         app:layout_constraintTop_toBottomOf="@+id/titleEditText"
         android:hint="가격"
         android:id="@+id/priceEditText"
+        android:fontFamily="@font/nanumhimnaeraneunm"
+        android:textSize="20sp"
         android:inputType="numberDecimal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,8 +69,10 @@
         android:id="@+id/imageAddButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/green"
         android:text="이미지 등록하기"
+        android:fontFamily="@font/nanumhimnaeraneunm"
+        android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@id/photoImageView"
         app:layout_constraintStart_toStartOf="@id/photoImageView"
         app:layout_constraintEnd_toEndOf="@id/photoImageView" />
@@ -82,8 +90,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="등록하기"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/green"
         android:id="@+id/submitButton"
+        android:fontFamily="@font/nanumhimnaeraneunm"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

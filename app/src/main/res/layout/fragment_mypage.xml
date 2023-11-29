@@ -11,6 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         app:layout_constraintTop_toTopOf="parent"
+        android:hint="아이디를 입력하세요."
+        android:fontFamily="@font/nanumhimnaeraneunm"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -19,6 +22,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
+        android:hint="비밀번호을 입력하세요."
+        android:textSize="20sp"
+        android:fontFamily="@font/nanumhimnaeraneunm"
         app:layout_constraintTop_toBottomOf="@id/emailEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -28,9 +34,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/green"
         android:enabled="false"
         android:text="회원가입"
+        android:fontFamily="@font/nanumhimnaeraneunm"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/passwordEditText"
         app:layout_constraintEnd_toStartOf="@id/signInOutButton" />
 
@@ -38,9 +47,12 @@
         android:id="@+id/signInOutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/green"
         android:enabled="false"
         android:text="로그인"
+        android:fontFamily="@font/nanumhimnaeraneunm"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/passwordEditText"
         app:layout_constraintEnd_toEndOf="@id/passwordEditText" />
 

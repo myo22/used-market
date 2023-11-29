@@ -19,7 +19,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:text="중고 거래"
-            android:fontFamily="@font/nanumhimnaeraneunm"
+            android:fontFamily="@font/nanumbareunhipi"
             android:layout_marginStart="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">

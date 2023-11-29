@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="채팅방 리스트"
-            android:fontFamily="@font/nanumhimnaeraneunm"
+            android:fontFamily="@font/nanumbareunhipi"
             android:textColor="@color/black"
             android:textSize="27sp"
             android:textStyle="bold" />

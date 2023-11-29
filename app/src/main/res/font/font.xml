@@ -7,7 +7,7 @@
 
     <font android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/nanumbeomsomce"/>
+        android:font="@font/nanumbareunhipi"/>
 
 
     <font android:fontStyle="normal"
@@ -17,5 +17,9 @@
     <font android:fontStyle="normal"
         android:fontWeight="400"
         android:font="@font/nanummiraenamu"/>
+
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/nanumggocnaeeum"/>
 
 </font-family>

@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <font-family xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <font android:fontStyle="normal"
-        android:fontWeight="400"
-        android:font="@font/nanumajummajayu"/>
 
     <font android:fontStyle="normal"
         android:fontWeight="400"
         android:font="@font/nanumbareunhipi"/>
 
-
-    <font android:fontStyle="normal"
-        android:fontWeight="400"
-        android:font="@font/nanumhimnaeraneunm"/>
-
-    <font android:fontStyle="normal"
-        android:fontWeight="400"
-        android:font="@font/nanummiraenamu"/>
-
-    <font android:fontStyle="normal"
-        android:fontWeight="400"
-        android:font="@font/nanumggocnaeeum"/>
 
 </font-family>

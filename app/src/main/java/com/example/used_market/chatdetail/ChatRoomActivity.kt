@@ -61,9 +61,10 @@ class ChatRoomActivity : AppCompatActivity(){
 
         findViewById<Button>(R.id.sendButton).setOnClickListener {
             val currentUserId = auth.currentUser?.email
+            val userNickname = currentUserId?.substring(0, 3) ?: "Default"
             if (currentUserId != null) {
                 val chatItem = ChatItem(
-                    senderId = currentUserId,
+                    senderId = userNickname,
                     message = findViewById<EditText>(R.id.messageEditText).text.toString()
                 )
 

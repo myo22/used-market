@@ -19,6 +19,8 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.example.used_market.R
 import com.example.used_market.DBKey.Companion.DB_ARTICLES
+import java.text.NumberFormat
+import java.util.Locale
 
 class AddArticleActivity : AppCompatActivity() {
 
@@ -43,21 +45,22 @@ class AddArticleActivity : AppCompatActivity() {
             when {
                 ContextCompat.checkSelfPermission(
                     this,
-                    android.Manifest.permission.READ_MEDIA_IMAGES
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE
                 ) == PackageManager.PERMISSION_GRANTED -> {
                     startContentProvider()
                 }
-                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_MEDIA_IMAGES) -> {
+                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE) -> {
                     showPermissionContextPopup()
                 }
                 else -> {
-                    requestPermissions(arrayOf(android.Manifest.permission.READ_MEDIA_IMAGES), 1010)
+                    requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1010)
                 }
 
 
             }
 
         }
+
 
         findViewById<Button>(R.id.submitButton).setOnClickListener {
             val title = findViewById<EditText>(R.id.titleEditText).text.toString()
@@ -104,11 +107,22 @@ class AddArticleActivity : AppCompatActivity() {
     }
 
     private fun uploadArticle(sellerId: String, title: String, price: String, imageUrl: String) {
-        val model = ArticleModel(sellerId, title, System.currentTimeMillis(), "$price 원", imageUrl)
+        val formattedPrice = formatPrice(price)
+
+        val model = ArticleModel(sellerId, title, System.currentTimeMillis(), formattedPrice, imageUrl)
         articleDB.push().setValue(model)
 
         hideProgress()
         finish()
+    }
+
+    private fun formatPrice(price: String): String {
+        // Parse the price to a double value
+        val priceValue = price.toDoubleOrNull() ?: 0.0
+
+        // Format the price with commas using NumberFormat
+        val numberFormat = NumberFormat.getNumberInstance(Locale.getDefault())
+        return numberFormat.format(priceValue)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -168,7 +182,7 @@ class AddArticleActivity : AppCompatActivity() {
             .setTitle("권한이 필요합니다.")
             .setMessage("사진을 가져오기 위해 필요합니다.")
             .setPositiveButton("동의") { _, _ ->
-                requestPermissions(arrayOf(android.Manifest.permission.READ_MEDIA_IMAGES), 1010)
+                requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1010)
             }
             .create()
             .show()
